@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open('4828.txt')
+sys.stdin = open('4828.txt', 'r')
+sys.stdout = open('4828_out.txt', 'w')
 T = int(input())
 for test_case in range(1, T + 1):
     N = int(input())

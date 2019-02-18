@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open('4831.txt')
+sys.stdin = open('4831.txt', 'r')
+sys.stdout = open('4831_out.txt', 'w')
 T = int(input())
 for test_case in range(1, T+1):
     K, N, M = list(map(int, input().split()))

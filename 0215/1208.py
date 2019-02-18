@@ -1,5 +1,6 @@
 import sys
-sys.stdin = open('1208.txt')
+sys.stdin = open('1208.txt', 'r')
+sys.stdout = open('1208_out.txt', 'w')
 for test_case in range(1, 11):
     dump = int(input())
     li = list(map(int, input().split()))
@@ -7,7 +8,7 @@ for test_case in range(1, 11):
     max_ptr = 0
     min_ptr = 100
     for i in li:
-        li_height[i] += 1
+        li_height[i] += 1+-
         if i > max_ptr:
             max_ptr = i
         if i < min_ptr:
