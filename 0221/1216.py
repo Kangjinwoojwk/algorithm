@@ -43,6 +43,34 @@ for test_case in range(10):
     print(f'#{test_num} {ans}')
 
 
+# def hoemun(a):
+#     n = len(a) >> 1
+#     for i in range(n):
+#         if a[i] != a[-(i + 1)]:
+#             return False
+#     return True
+#
+#
+# for test_case in range(10):
+#     test_num = int(input())
+#     arr = [input() for _ in range(100)]
+#     ans = 0
+#     i = 100
+#     while i > ans:
+#         for j in range(100):
+#             for k in range(101 - i):
+#                 if hoemun(arr[j][k:k + i]):
+#                     ans = i
+#                     break
+#                 if hoemun(''.join([arr[l][j] for l in range(k, k + i)])):
+#                     ans = i
+#                     break
+#             if ans == i:
+#                 break
+#         i -= 1
+#     print(f'#{test_num} {ans}')
+
+
 
 
 
