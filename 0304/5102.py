@@ -5,7 +5,6 @@ sys.stdout = open('5102_out.txt', 'w')
 
 def sol(now, goal, step):
     global min_step
-    global Node
     global old_node
     if now == goal and step < min_step:
         min_step = step

@@ -4,30 +4,28 @@ sys.stdout = open('4881_out.txt', 'w')
 T = int(input())
 
 
-def sol(x, map_arr, garo, Min, N, Sum):
-    if len(Min) and Sum > min(Min):
+def sol(x, N, Sum):
+    global Min
+    if Sum > Min:
         return
     if x == N:
-        Min.append(Sum)
+        if Min > Sum:
+            Min = Sum
         return
     for i in range(N):
         if garo[i]:
             pass
         else:
             garo[i] = True
-            sol(x + 1, map_arr, garo, Min, N, Sum + map_arr[x][i])
+            sol(x + 1, N, Sum + map_arr[x][i])
             garo[i] = False
 
 
 for test_case in range(1, T + 1):
     N = int(input())
     map_arr = [list(map(int, input().split())) for _ in range(N)]
-    Min = []
+    Min = 100000000
     garo = [False] * N
-    sol(0, map_arr, garo, Min, N, 0)
-    ans = Min[0]
-    for i in Min:
-        if i < ans:
-            ans = i
-    print(f'#{test_case} {ans}')
+    sol(0, N, 0)
+    print(f'#{test_case} {Min}')
 

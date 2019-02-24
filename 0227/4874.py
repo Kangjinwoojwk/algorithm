@@ -3,7 +3,7 @@ sys.stdin = open('4874.txt', 'r')
 sys.stdout = open('4874_out.txt', 'w')
 
 
-def sol(list_input, ptr):
+def sol(ptr):
     n = len(list_input)
     cal = {'+', '-', '*', '/'}
     if n == 1:
@@ -18,8 +18,8 @@ def sol(list_input, ptr):
         elif list_input[ptr + 2] == '/':
             list_input[ptr] = str(int(list_input[ptr]) // int(list_input[ptr + 1]))
         list_input[:] = list_input[:ptr + 1] + list_input[ptr+3:]
-        return sol(list_input, ptr - 1)
-    return sol(list_input, ptr + 1)
+        return sol(ptr - 1)
+    return sol(ptr + 1)
 
 
 T = int(input())
@@ -36,7 +36,7 @@ for test_case in range(1, T + 1):
             count[0] += 1
     if (count[0] - 1) != count[1]:
         list_input = ['error']
-    sol(list_input, 0)
+    sol(0)
     print(f'#{test_case} {list_input[0]}')
 
 

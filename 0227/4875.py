@@ -5,12 +5,12 @@ dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
 
 
-def sol(x, y, maze, maze_map, N):
+def sol(x, y, N):
     for i in range(4):
         if 0 <= x + dx[i] < N and 0 <= y + dy[i] < N:
             if maze_map[x + dx[i]][y + dy[i]] == False and maze[x + dx[i]][y + dy[i]] != 1:
                 maze_map[x + dx[i]][y + dy[i]] = True
-                sol(x + dx[i], y + dy[i], maze, maze_map, N)
+                sol(x + dx[i], y + dy[i], N)
     return
 
 
@@ -27,7 +27,7 @@ for test_case in range(1, T + 1):
                 end_x, end_y = i, j
     maze_map = [[False] * N for _ in range(N)]
     maze_map[x][y] = True
-    sol(x, y, maze, maze_map, N)
+    sol(x, y, N)
     if maze_map[end_x][end_y]:
         print(f'#{test_case} 1')
     else:
