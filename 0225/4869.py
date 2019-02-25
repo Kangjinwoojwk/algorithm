@@ -13,7 +13,6 @@ def sol(N):
         return memo[N]
 
 
-
 T = int(input())
 memo = [0] * 31
 memo[1] = 1
