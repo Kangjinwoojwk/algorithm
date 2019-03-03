@@ -1,6 +1,8 @@
 import sys
 sys.stdin = open('5110.txt', 'r')
 sys.stdout = open('5110_out.txt', 'w')
+# 통과 됐다....로직은 그대로, 리스트 인덱스를 [i:] 하고 [:i]해서 슬라이싱하면
+# 두번 접속 하는게 되서 아웃 되나 보다....
 T = int(input())
 for test_case in range(1, T + 1):
     N, M = list(map(int, input().split()))
@@ -11,8 +13,8 @@ for test_case in range(1, T + 1):
     for _ in range(M - 1):
         while i < (_ + 1) * N:
             if data[0][i] > data[1][0]:
-                data[0] = data[0][:i] + data[1] + data[0][i:]
-                data = data[:1] + data[2:]
+                data[0][i:i] = data[1]
+                del data[1]
                 ptr = ptr[:j] + [[data[0][i], i]] + ptr[j:]
                 for k in range(j + 1, len(ptr)):
                     ptr[k][1] += N
@@ -29,7 +31,7 @@ for test_case in range(1, T + 1):
             i += 1
         else:
             data[0] = data[0][:] + data[1]
-            data = data[:1] + data[2:]
+            del data[1]
             ptr.append([data[0][i], i])
             if _ != M - 2:
                 j = 0
@@ -42,12 +44,8 @@ for test_case in range(1, T + 1):
                     i = ptr[-1][1]
     data = data[0]
     print('#{}'.format(test_case), end='')
-    if len(data) >= 10:
-        for i in range(1, 11):
-            print(' {}'.format(data[-i]), end='')
-    else:
-        for i in range(1, len(data) + 1):
-            print(' {}'.format(data[-i]), end='')
+    for i in range(1, 11):
+        print(' {}'.format(data[-i]), end='')
     print()
 
 
