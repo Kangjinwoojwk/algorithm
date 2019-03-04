@@ -6,4 +6,4 @@ for test_case in range(1, T + 1):
     N, M = list(map(int, input().split()))
     li = input().split()
     ans = li[M % N]
-    print(f'#{test_case} {ans}')
+    print('#{} {}'.format(test_case, ans))

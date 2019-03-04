@@ -37,7 +37,7 @@ for test_case in range(1, T + 1):
     if (count[0] - 1) != count[1]:
         list_input = ['error']
     sol(0)
-    print(f'#{test_case} {list_input[0]}')
+    print('#{} {}'.format(test_case, list_input[0]))
 
 
 

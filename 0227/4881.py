@@ -27,5 +27,5 @@ for test_case in range(1, T + 1):
     Min = 100000000
     garo = [False] * N
     sol(0, N, 0)
-    print(f'#{test_case} {Min}')
+    print('#{} {}'.format(test_case, Min))
 

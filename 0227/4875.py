@@ -29,6 +29,6 @@ for test_case in range(1, T + 1):
     maze_map[x][y] = True
     sol(x, y, N)
     if maze_map[end_x][end_y]:
-        print(f'#{test_case} 1')
+        print('#{} 1'.format(test_case))
     else:
-        print(f'#{test_case} 0')
+        print('#{} 0'.format(test_case))

@@ -29,6 +29,6 @@ for test_case in range(1, T + 1):
     maze_map[x][y] = True
     ans = [0]
     sol(x, y, 0, maze, maze_map, N, ans)
-    print(f'#{test_case} {ans[0]}')
+    print('#{} {}'.format(test_case, ans[0]))
 
 

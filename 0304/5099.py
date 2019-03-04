@@ -21,7 +21,7 @@ for test_case in range(1, T + 1):
                 oven = oven[1:]
                 continue
         oven = oven[1:] + [oven[0]]
-    print(f'#{test_case} {oven[0][1]}')
+    print('#{} {}'.format(test_case, oven[0][1]))
 
 
 

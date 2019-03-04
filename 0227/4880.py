@@ -41,4 +41,4 @@ for test_case in range(1, T + 1):
     gawi_bawi_bo = list(map(int, input().split()))
     people = [_ for _ in range(1, N + 1)]
     ans = sol(people)
-    print(f'#{test_case} {ans}')
+    print('#{} {}'.format(test_case, ans))
