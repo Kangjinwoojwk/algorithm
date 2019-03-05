@@ -18,7 +18,7 @@ for test_case in range(1, T + 1):
     else:
         left += (N - full)
     root = left + 1 # root 부터 구한다.
-    binary_list = [root for _ in range(N + 1)]
+    binary_list = [root for _ in range(N)]
     
     print('#{} {} {}'.format(test_case, root, binary_list[N // 2]))
 
