@@ -1,39 +1,19 @@
-# 제로 부터 다시
+# 제로 부터 다시 hellojdh
 N = int(input())
-li = []
+li = [int(input()) for _ in range(N)]
+li.sort()
 di = {}
-max_cnt = 0
-for _ in range(N):
-    a = int(input())
-    if a in di:
-        di[a] += 1
-        if max_cnt < di[a]:
-            max_cnt = di[a]
+for i in li:
+    if i in di:
+        di[i] += 1
     else:
-        di[a] = 1
-        if max_cnt == 0:
-            max_cnt = 1
-    for i in range(_):
-        if li[i] > a:
-            li.insert(i, a)
-            break
-    else:
-        li.append(a)
-li2 = []
-for k, v in di.items():
-    if v == max_cnt:
-        for i in range(len(li2)):
-            if li2[i] > k:
-                li2.insert(i, k)
-                break
-        else:
-            li2.append(k)
-print(int(round(sum(li)/N)))
-print(li[N//2])
-if len(li2) > 1:
-    print(li2[1])
-else:
-    print(li2[0])
+        di[i] = 1
+m = max(di.values())
+modes = sorted(i for i in di if di[i] == m)
+mode = modes[1 % len(modes)]
+print(int(((sum(li) * 2 +N)// N) // 2))
+print(li[N // 2])
+print(mode)
 print(li[-1] - li[0])
 
 
