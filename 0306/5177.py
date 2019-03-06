@@ -17,6 +17,7 @@ for test_case in range(1, T + 1):
             j = (j - 1) // 2
         i += 1
     i -= 1
+    print(heap)
     while i > 0:
         ans += heap[(i - 1) // 2]
         i = (i - 1) // 2

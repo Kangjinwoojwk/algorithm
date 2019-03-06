@@ -11,6 +11,36 @@ ans = -1
 step = 1
 while ans == -1:
     que_cnt = 0
+    for i in range(que_start, que_end):
+        if queue[i][0] == N - 1 and queue[i][1] == M - 1:
+            ans = step
+            break
+        for j in range(4):
+            x, y = queue[i][0] + dx[j], queue[i][1] + dy[j]
+            if x < 0 or y < 0 or x >= N or y >= M:
+                continue
+            if visit[queue[i][2]][x][y]:
+                continue
+            if input_map[x][y] == '1' and queue[i][2] == 0:
+                continue
+            if input_map[x][y] == '0':
+                if queue[i][2] == 1:
+                    visit[0][x][y] = True
+                visit[queue[i][2]][x][y] = True
+                queue.append([x, y, queue[i][2]])
+                que_cnt += 1
+            if input_map[x][y] == '1' and queue[i][2] == 1:
+                visit[0][x][y] = True
+                queue.append([x, y, 0])
+                que_cnt += 1
+    if que_cnt == 0:
+        break
+    que_start, que_end = que_end, que_end + que_cnt
+    step += 1
+print(ans)
+
+
+
     
 
 
