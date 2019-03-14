@@ -6,22 +6,33 @@ dx = [0, 0, -1, 1]
 for tc in range(1, T + 1):
     N = int(input())
     data = [list(map(int, input().split())) for _ in range(N)]
+    ans = 0
     for _ in range(N):
         data[_][0] *= 2
         data[_][1] *= 2
     while N > 0:
-        chk = {}
+        chk = dict()
+        delete_li = []
+        delete_cnt = 0
         for i in range(N):
-            for j in range(4):
-                if data[i][2] == j:
-                    data[i][0] += dx[j]
-                    data[i][1] += dy[j]
-                    if (data[i][0], data[i][1]) not in chk:
-                        chk[(data[i][0], data[i][1])] = 1
-                    else:
-                        chk[(data[i][0], data[i][1])] += 1
+            data[i][0] += dx[data[i][2]]
+            data[i][1] += dy[data[i][2]]
+            if (data[i][0], data[i][1]) not in chk:
+                chk[(data[i][0], data[i][1])] = 1
+            else:
+                chk[(data[i][0], data[i][1])] += 1
         for i in range(N):
-            
+            if data[i][0] < -2000 or data[i][1] < -2000 or data[i][0] > 2000 or data[i][1] > 2000:
+                delete_cnt += 1
+                delete_li.append(i)
+            elif chk[(data[i][0], data[i][1])] > 1:
+                ans += data[i][3]
+                delete_cnt += 1
+                delete_li.append(i)
+        for i in range(delete_cnt - 1, -1, -1):
+            data.pop(delete_li[i])
+            N -= 1
+    print('#{} {}'.format(tc, ans))
 
 
 
