@@ -22,6 +22,8 @@ def up(n):
                 else:
                     break
     sol(n)
+
+
 def down(n):
     global N
     for i in range(N):
@@ -46,6 +48,8 @@ def down(n):
                 else:
                     break
     sol(n)
+
+
 def left(n):
     global N
     for i in range(N):
@@ -70,6 +74,8 @@ def left(n):
                 else:
                     break
     sol(n)
+
+
 def right(n):
     global N
     for i in range(N):
@@ -94,6 +100,8 @@ def right(n):
                 else:
                     break
     sol(n)
+
+
 def sol(n):
     global ans, N
     if n == 5:

@@ -2,25 +2,27 @@ from collections import deque
 su, do = map(int, input().split())
 Q = deque()
 Q.append(su)
-time = 0
-visit = [0] * 100001
-while True:
-    if visit[do]:
+time = -1
+cnt = 0
+visit = [True]*100001
+while Q:
+    if cnt:
         break
+    time += 1
     for i in range(len(Q)):
         temp = Q.popleft()
-        if temp - 1 >= 0:
-            visit[temp - 1] += 1
+        if temp == do:
+            cnt += 1
+            continue
+        visit[temp] = False
+        if temp - 1 >= 0 and visit[temp - 1]:
             Q.append(temp - 1)
-        if temp + 1 <= 100000:
-            visit[temp + 1] += 1
+        if temp + 1 <= 100000 and visit[temp + 1]:
             Q.append(temp + 1)
-        if temp * 2 <= 100000:
-            visit[temp * 2] += 1
+        if temp * 2 <= 100000 and visit[temp * 2]:
             Q.append(temp * 2)
-    time += 1
 print(time)
-print(visit[do])
+print(cnt)
 
 # from collections import deque
 # su, do = map(int, input().split())
