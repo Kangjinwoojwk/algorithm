@@ -1,4 +1,3 @@
-# wnsgur9648
 # def merge(li):
 #     global cnt
 #     n = len(li)
