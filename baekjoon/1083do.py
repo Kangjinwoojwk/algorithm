@@ -1,14 +1,12 @@
 N = int(input())
-li = input().split()
+li = list(map(int, input().split()))
 S = int(input())
+idx = 0
 while S:
-    for i in range(N):
-        idx = li.index(max(li[i:i + S + 1]))
-        if idx == i:
-            if i == N - 1:
-                S = 0
-            continue
-        li = li[:i] + [li[idx]] + li[i:idx] + li[idx + 1:]
-        S -= (idx - i)
+    if idx == N:
         break
-print(' '.join(li))
+    i = li.index(max(li[idx: idx + S + 1]))
+    li.insert(idx, li.pop(i))
+    S -= (i - idx)
+    idx += 1
+print(' '.join(map(str, li)))
