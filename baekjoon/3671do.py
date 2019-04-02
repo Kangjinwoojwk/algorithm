@@ -8,7 +8,7 @@ for i in range(2, 3164):
     for j in range(2 * i, 10000000, i):
         ceh[j] = False
 print(time.time() - a)
-def sol(n, it):
+def sol(it):
     global ans
     temp = int(it)
     if ceh[temp]:
@@ -19,7 +19,7 @@ def sol(n, it):
         if visit[k] == False:
             continue
         visit[k] = False
-        sol(n + 1, it + get[k])
+        sol(it + get[k])
         visit[k] = True
 result = list()
 for _ in range(int(input())):
@@ -30,7 +30,7 @@ for _ in range(int(input())):
     ans = 0
     for i in range(N):
         visit[i] = False
-        sol(0, get[i])
+        sol(get[i])
         visit[i] = True
     result.append(ans)
 print('\n'.join(map(str, result)))
