@@ -1,31 +1,24 @@
-N, K = map(int, input().split())
-li = list(map(int, input().split()))
-H = list()
-cnt = 0
+import sys
+from queue import PriorityQueue
+N, K = map(int, sys.stdin.readline().split())
+li = list(map(int, sys.stdin.readline().split()))
+H = PriorityQueue()
 i = 0
 while i < N:
-    if cnt < K:
-        H.append(li.pop(i))
-        cnt += 1
+    if H.qsize() < K:
+        H.put(li.pop(i))
         N -= 1
-        for j in range(cnt - 1, 0, -1):
-            if H[j - 1] > H[j]:
-                H[j - 1], H[j] = H[j], H[j - 1]
-            else:
-                break
-    elif H[0] < li[i]:
-        H.append(li.pop(i))
-        for j in range(cnt - 1, 0, -1):
-            if H[j - 1] > H[j]:
-                H[j - 1], H[j] = H[j], H[j - 1]
-            else:
-                break
-        li[i:i] = [H.pop(0)]
-        i += 1
+        continue
     else:
-        i += 1
-li.extend(H)
+        temp = H.get()
+        if temp < li[i]:
+            temp, li[i] = li[i], temp
+        H.put(temp)
+    i += 1
+for i in range(K):
+    li.append(H.get())
 print(' '.join(map(str, li)))
+
 
 
 
