@@ -26,7 +26,7 @@ def move():
                     else:
                         meet[(x, y)].append(data[i][j][:])
                 temp[x][y][0] += data[i][j][0]
-                temp[x][y][1] += data[i][j][0]
+                temp[x][y][1] += data[i][j][1]
     for k, v in meet.items():
         x, y = k
         temp[x][y][1] = max(v)[1]
