@@ -1,5 +1,5 @@
 import sys
-# sys.stdin = open('17134.txt', 'r')
+sys.stdin = open('17134.txt', 'r')
 # sys.stdout = open('17134_w.txt', 'w')
 from time import time
 t = time()
@@ -11,13 +11,14 @@ for i in range(2, 1001):
     for j in range(i << 1, 1000000, i):
         ceh[j] = False
 print(time()-t)
-a = ''.join(['1' if ceh[i] else '0' for i in range(3, 1000000, 2)])
-b = ''.join(reversed(['1' if ceh[i] else '0' for i in range(2, len(a) + 2)]))
-# print(time()-t)
-cnt = [0] * 500000
-for _ in range(int(sys.stdin.readline())):
-    n = (int(sys.stdin.readline()) - 5) // 2
-    print(str(bin(int(a[:n], 2) & int(b[-n:], 2))).count('1'))
+a = [ceh[i] for i in range(3, 1000000, 2)]
+b = list(reversed([ceh[i] for i in range(2, len(a) + 2)]))
+print(time()-t)
+cnt = [sum([True if a[i] and b[-(n - i)] else False for i in range(n)]) for n in range(50000)]
+# for _ in range(int(sys.stdin.readline())):
+#     n = (int(sys.stdin.readline()) - 5) // 2
+#     print(sum([True if a[i] and b[-(n - i)] else False for i in range(n)]))
+    # print(str(bin(int(a[:n], 2) & int(b[-n:], 2))).count('1'))
 print(time() - t)
 
 
