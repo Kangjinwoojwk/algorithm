@@ -14,14 +14,14 @@ print(time()-t)
 a = [ceh[i] for i in range(3, 1000000, 2)]
 b = list(reversed([ceh[i] for i in range(2, len(a) + 2)]))
 print(time()-t)
-cnt = [sum([True if a[i] and b[-(n - i)] else False for i in range(n)]) for n in range(50000)]
-# for _ in range(int(sys.stdin.readline())):
-#     n = (int(sys.stdin.readline()) - 5) // 2
-#     print(sum([True if a[i] and b[-(n - i)] else False for i in range(n)]))
-    # print(str(bin(int(a[:n], 2) & int(b[-n:], 2))).count('1'))
+cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
 print(time() - t)
 
-
+# print(sum([True if a[i] and b[-(n - i)] else False for i in range(n)]))
+# print(str(bin(int(a[:n], 2) & int(b[-n:], 2))).count('1'))
+# a = [ceh[i] for i in range(3, 1000000, 2)]
+# b = list(reversed([ceh[i] for i in range(2, len(a) + 2)]))
+# cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
 # a = ''.join(['1' if ceh[i] else '0' for i in range(3, 1000000, 2)])
 # b = ''.join(reversed(['1' if ceh[i] else '0' for i in range(2, len(a) + 2)]))
 # print('\n'.join([str(str(bin(int(a[:i], 2) & int(b[-i:], 2))).count('1')) for i in range(1, 500000)]))
