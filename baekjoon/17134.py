@@ -11,11 +11,52 @@ for i in range(2, 1001):
     for j in range(i << 1, 1000000, i):
         ceh[j] = False
 print(time()-t)
+# a = int(''.join(['1' if ceh[i] else '0' for i in range(3, 1000000, 2)]), 2)
+# b = int(''.join(reversed(['1' if ceh[i] else '0' for i in range(2, 500001)])), 2)
+# print(time()-t)
+# cnt = [bin((a >> n) & b).count('1') for n in range(499998, -1, -1)]
 a = [ceh[i] for i in range(3, 1000000, 2)]
 b = list(reversed([ceh[i] for i in range(2, len(a) + 2)]))
+# cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
+# print(time()-t)
+result = list()
+for _ in range(int(sys.stdin.readline())):
+    n=(int(sys.stdin.readline()) - 7) // 2
+    result.append(len([True for i in range(n) if a[i] and b[-(n - i)]]))
+print(' '.join(map(str, result)))
+
 print(time()-t)
-cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
-print(time() - t)
+# t = time()
+# a = [ceh[i] for i in range(3, 1000000, 2)]
+# b = list(reversed([ceh[i] for i in range(2, len(a) + 2)]))
+# cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
+# print(time()-t)
+
+
+
+# a = 0
+# b = 0
+# for i in range(500000):
+#     a |= ceh[2 * i + 1] << i
+#     b |= ceh[i + 2] << i
+
+
+# t = time()
+# cnt = [len([True for i in range(n) if a[i] and b[-(n - i)]]) for n in range(50000)]
+# print(time() - t)
+# t = time()
+# for _ in range(int(sys.stdin.readline())):
+#     n = (int(sys.stdin.readline()) - 7) // 2
+#     len([True for i in range(n) if a[i] and b[-(n - i)]])
+# print(time() - t)
+
+# a = int(''.join(['1' if ceh[i] else '0' for i in range(3, 1000000, 2)]), 2)
+# b = int(''.join(reversed(['1' if ceh[i] else '0' for i in range(2, 500001)])), 2)
+# cnt = [bin((a >> n) & b).count('1') for n in range(499999, -1, -1)]
+# len:499999
+# for _ in range(int(sys.stdin.readline())):
+#     print(cnt[(int(sys.stdin.readline()) - 7) // 2])
+
 
 # print(sum([True if a[i] and b[-(n - i)] else False for i in range(n)]))
 # print(str(bin(int(a[:n], 2) & int(b[-n:], 2))).count('1'))
