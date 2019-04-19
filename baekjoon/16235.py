@@ -1,47 +1,128 @@
-from collections import deque
-X, Y, AGE, LIVE = 0, 1, 2, 3
 dx = [-1, 1, 0, 0, -1, 1, -1, 1]
 dy = [0, 0, -1, 1, -1, 1, 1, -1]
 N, M, K = map(int, input().split())
 A = [list(map(int, input().split())) for _ in range(N)]
 geo = [[5]*N for _ in range(N)]
-tree = {}
-dead_tree={}
-for i in range(N):
-    for j in range(N):
-        tree[(i, j)] = deque()
-        dead_tree[(i, j)] = deque()
+tree = list()
+dead_tree = list()
+dead = 0
 for _ in range(M):
-    a, b, c = map(int, input().split())
-    tree[(a - 1, b - 1)].append(c)
+    x, y, year = map(int, input().split())
+    tree.append((x - 1, y - 1, year))
 for _ in range(K):
-    for i in range(N):
-        for j in range(N):
-            for k in range(len(tree[(i, j)])):
-                temp = tree[(i, j)].pop()
-                if temp <= geo[i][j]:
-                    geo[i][j] -= temp
-                    tree[(i, j)].appendleft(temp + 1)
-                else:
-                    dead_tree[(i, j)].append(temp//2)
-                    M -= 1
-    for i in range(N):
-        for j in range(N):
-            for k in range(len(dead_tree[(i, j)])):
-                geo[i][j] += dead_tree[(i, j)].pop()
-    for i in range(N):
-        for j in range(N):
-            for k in range(len(tree[(i, j)])):
-                if tree[(i, j)][k] % 5 == 0:
-                    for l in range(8):
-                        x, y = i + dx[l], j + dy[l]
-                        if 0 <= x < N and 0 <= y < N:
-                            tree[(x, y)].append(1)
-                            M += 1
+    new_tree = list()
+    for __ in range(M):
+        x, y, year = tree.pop()
+        if year <= geo[x][y]:
+            geo[x][y] -= year
+            year += 1
+            tree.insert(0, (x, y, year))
+            if year % 5 == 0:
+                for i in range(8):
+                    nx, ny = x + dx[i], y + dy[i]
+                    if 0 <= nx < N and 0 <= ny < N:
+                        new_tree.append((nx, ny, 1))
+                        M += 1
+        else:
+            dead_tree.append((x, y, year))
+            dead += 1
+            M -= 1
+    for __ in range(dead):
+        x, y, year = dead_tree.pop()
+        geo[x][y] += (year//2)
+    dead = 0
+    tree.extend(new_tree)
     for i in range(N):
         for j in range(N):
             geo[i][j] += A[i][j]
 print(M)
+
+
+# dx = [-1, 1, 0, 0, -1, 1, -1, 1]
+# dy = [0, 0, -1, 1, -1, 1, 1, -1]
+# N, M, K = map(int, input().split())
+# A = [list(map(int, input().split())) for _ in range(N)]
+# geo = [[5]*N for _ in range(N)]
+# tree = list()
+# dead_tree = list()
+# dead = 0
+# for _ in range(M):
+#     x, y, year = map(int, input().split())
+#     tree.append((x - 1, y - 1, year))
+# for _ in range(K):
+#     new_tree = list()
+#     for __ in range(M):
+#         x, y, year = tree.pop()
+#         if year <= geo[x][y]:
+#             geo[x][y] -= year
+#             year += 1
+#             tree.insert(0, (x, y, year))
+#             if year % 5 == 0:
+#                 for i in range(8):
+#                     nx, ny = x + dx[i], y + dy[i]
+#                     if 0 <= nx < N and 0 <= ny < N:
+#                         new_tree.append((nx, ny, 1))
+#                         M += 1
+#         else:
+#             dead_tree.append((x, y, year))
+#             dead += 1
+#             M -= 1
+#     for __ in range(dead):
+#         x, y, year = dead_tree.pop()
+#         geo[x][y] += (year//2)
+#     dead = 0
+#     tree.extend(new_tree)
+#     for i in range(N):
+#         for j in range(N):
+#             geo[i][j] += A[i][j]
+# print(M)
+
+
+# 재 채점으로 시간 초과가 되었다.
+# from collections import deque
+# X, Y, AGE, LIVE = 0, 1, 2, 3
+# dx = [-1, 1, 0, 0, -1, 1, -1, 1]
+# dy = [0, 0, -1, 1, -1, 1, 1, -1]
+# N, M, K = map(int, input().split())
+# A = [list(map(int, input().split())) for _ in range(N)]
+# geo = [[5]*N for _ in range(N)]
+# tree = {}
+# dead_tree={}
+# for i in range(N):
+#     for j in range(N):
+#         tree[(i, j)] = deque()
+#         dead_tree[(i, j)] = deque()
+# for _ in range(M):
+#     a, b, c = map(int, input().split())
+#     tree[(a - 1, b - 1)].append(c)
+# for _ in range(K):
+#     for i in range(N):
+#         for j in range(N):
+#             for k in range(len(tree[(i, j)])):
+#                 temp = tree[(i, j)].pop()
+#                 if temp <= geo[i][j]:
+#                     geo[i][j] -= temp
+#                     tree[(i, j)].appendleft(temp + 1)
+#                 else:
+#                     dead_tree[(i, j)].append(temp//2)
+#                     M -= 1
+#     for i in range(N):
+#         for j in range(N):
+#             for k in range(len(dead_tree[(i, j)])):
+#                 geo[i][j] += dead_tree[(i, j)].pop()
+#     for i in range(N):
+#         for j in range(N):
+#             for k in range(len(tree[(i, j)])):
+#                 if tree[(i, j)][k] % 5 == 0:
+#                     for l in range(8):
+#                         x, y = i + dx[l], j + dy[l]
+#                         if 0 <= x < N and 0 <= y < N:
+#                             tree[(x, y)].append(1)
+#                             M += 1
+#     for i in range(N):
+#         for j in range(N):
+#             geo[i][j] += A[i][j]
+# print(M)
 
 
 
