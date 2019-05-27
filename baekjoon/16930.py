@@ -18,12 +18,12 @@ while visit[x2][y2] == 0:
     for i in range(4):
         for j in range(1, K + 1):
             nx, ny = x + j * dx[i], y + j * dy[i]
-            if nx < 0 or nx >= N or ny < 0 or ny >= M:
+            if nx < 0 or nx >= N or ny < 0 or ny >= M or data[nx][ny] == '#':
+                break
+            elif visit[nx][ny] and visit[nx][ny] <= visit[x][y]:
                 break
             elif visit[nx][ny]:
                 pass
-            elif data[nx][ny] == '#':
-                break
             elif data[nx][ny] == '.':
                 visit[nx][ny] = visit[x][y] + 1
                 queue.append((nx, ny))

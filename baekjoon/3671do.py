@@ -1,40 +1,62 @@
-import time
-a = time.time()
 ceh = [True] * 10000000
 ceh[0] = ceh[1] = False
 for i in range(2, 3164):
-    if ceh[i] == False:
+    if not ceh[i]:
         continue
     for j in range(2 * i, 10000000, i):
         ceh[j] = False
-print(time.time() - a)
-def sol(it):
-    global ans
-    temp = int(it)
-    if ceh[temp]:
-        if visit2[temp]:
-            visit2[temp] = False
-            ans += 1
-    for k in range(N):
-        if visit[k] == False:
-            continue
-        visit[k] = False
-        sol(it + get[k])
-        visit[k] = True
-result = list()
-for _ in range(int(input())):
-    get = input()
-    N = len(get)
-    visit = [True] * N
-    visit2 = [True] * 10000000
-    ans = 0
-    for i in range(N):
-        visit[i] = False
-        sol(get[i])
-        visit[i] = True
-    result.append(ans)
-print('\n'.join(map(str, result)))
-print(time.time() - a)
+ans = dict()
+for i in range(2, 10000000):
+    if ceh[i]:
+        a = [0] * 10
+        while i:
+            a[i % 10] += 1
+            i //= 10
+        a = tuple(a)
+        if a not in ans:
+            ans[a] = 1
+        else:
+            ans[a] += 1
+
+
+
+# import time
+# a = time.time()
+# ceh = [True] * 10000000
+# ceh[0] = ceh[1] = False
+# for i in range(2, 3164):
+#     if ceh[i] == False:
+#         continue
+#     for j in range(2 * i, 10000000, i):
+#         ceh[j] = False
+# print(time.time() - a)
+# def sol(it):
+#     global ans
+#     temp = int(it)
+#     if ceh[temp]:
+#         if visit2[temp]:
+#             visit2[temp] = False
+#             ans += 1
+#     for k in range(N):
+#         if visit[k] == False:
+#             continue
+#         visit[k] = False
+#         sol(it + get[k])
+#         visit[k] = True
+# result = list()
+# for _ in range(int(input())):
+#     get = input()
+#     N = len(get)
+#     visit = [True] * N
+#     visit2 = [True] * 10000000
+#     ans = 0
+#     for i in range(N):
+#         visit[i] = False
+#         sol(get[i])
+#         visit[i] = True
+#     result.append(ans)
+# print('\n'.join(map(str, result)))
+# print(time.time() - a)
 
 
 
