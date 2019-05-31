@@ -17,6 +17,28 @@ for i in range(2, 10000000):
             ans[a] = 1
         else:
             ans[a] += 1
+def sol(n):
+    re = 0
+    a_ = [0] * 10
+    for i in n:
+        a_[int(i)] += 1
+    temp = [0] * 10
+    for i0 in range(a_[0] + 1):
+        for i1 in range(a_[1] + 1):
+            for i2 in range(a_[2] + 1):
+                for i3 in range(a_[3] + 1):
+                    for i4 in range(a_[4] + 1):
+                        for i5 in range(a_[5] + 1):
+                            for i6 in range(a_[6] + 1):
+                                for i7 in range(a_[7] + 1):
+                                    for i8 in range(a_[8] + 1):
+                                        for i9 in range(a_[9] + 1):
+                                            if (i0, i1, i2, i3, i4, i5, i6, i7, i8, i9) in ans:
+                                                re += ans[(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9)]
+    return re
+
+for tc in range(int(input())):
+    print(sol(input()))
 
 
 
