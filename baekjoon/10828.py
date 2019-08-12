@@ -1,7 +1,8 @@
+import sys
 st = []
-T = int(input())
+T = int(sys.stdin.readline())
 for _ in range(T):
-    get = input().split()
+    get = sys.stdin.readline().split()
     if get[0] == 'push':
         st.append(get[1])
     elif get[0] == 'top':
