@@ -1,25 +1,26 @@
+import time
 def cal():
     global ans
     score = 0
     j = 0
-    for i in data:
+    for i in range(N):
         out = 0
         runner = list()
+        s = 0
         while out < 3:
-            if i[line[j]] == 0:
+            if data[i][line[j]] == 0:
                 out += 1
-            elif i[line[j]] == 4:
-                score += len(runner) + 1
-                runner = list()
             else:
-                for k in range(len(runner) - 1, -1, -1):
-                    runner[k] += i[line[j]]
-                    if runner[k] >= 4:
-                        runner.pop()
-                        score += 1
-                else:
-                    runner.insert(0, i[line[j]])
+                runner.append(data[i][line[j]])
             j = (j + 1) % 9
+        for k in [-1, -2, -3, -4]:
+            s += runner[k]
+            if s >= 4:
+                if k == - 1:
+                    score += len(runner)
+                else:
+                    score += len(runner[:k + 1])
+                break
     if score > ans:
         ans = score
 
@@ -31,7 +32,7 @@ def lin(n):
     if n == 3:
         lin(4)
     else:
-        for i in range(9):
+        for i in [1, 2, 3, 4, 5, 6, 7, 8]:
             if visited[i]:
                 visited[i] = False
                 line[n] = i
@@ -41,11 +42,12 @@ def lin(n):
 
 N = int(input())
 data = [list(map(int, input().split())) for _ in range(N)]
-
+t = time.time()
 visited = [True] * 9
 line = [0] * 9
 ans = 0
 visited[0] = False
 line[3] = 0
 lin(0)
+print(time.time() - t)
 print(ans)
