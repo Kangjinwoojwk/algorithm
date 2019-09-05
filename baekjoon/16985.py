@@ -52,13 +52,6 @@ def create():
         copy(i, per[i], d[per[i]])
     if cube[0][0][0] and cube[4][4][4]:
         cal((0, 0, 0), (4, 4, 4))
-    if cube[0][0][4] and cube[4][4][0]:
-        cal((0, 0, 4), (4, 4, 0))
-    if cube[0][4][4] and cube[4][0][0]:
-        cal((0, 4, 4), (4, 0, 0))
-    if cube[4][0][4] and cube[0][4][0]:
-        cal((4, 0, 4), (0, 4, 0))
-
 
 def permutation(n):
     if ans == 12:
