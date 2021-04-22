@@ -1,4 +1,13 @@
-# 중복이 장난 아니였다. 해결....
+# 중복이 장난 아니였다. 해결....틀렸습니다로 변해서 바꿔보자 0, 0에 놓을 경우를 빼놓고 구현했다..하...
+N, M, H = map(int, input().split())
+number = [_ for _ in range(N)]
+sero = [[False]*(N - 1) for _ in range(H)]
+ans = -1
+for _ in range(M):
+    a, b = map(int, input().split())
+    sero[a - 1][b - 1] = True
+
+
 def cal(n):
     global ans
     check = [_ for _ in range(N)]
@@ -16,28 +25,21 @@ def sol(x, y, n, chk):
     if chk == 0:
         cal(n)
         return
-    for j in range(y + 1, N - 1):
+    for j in range(y, N - 1):
         if sero[x][j] or (j - 1 >= 0 and sero[x][j - 1]) or (j + 1 < N - 1 and sero[x][j + 1]):
             continue
         sero[x][j] = True
-        sol(x, j, n, chk - 1)
+        sol(x, j + 1, n, chk - 1)
         sero[x][j] = False
     for i in range(x + 1, H):
         for j in range(N - 1):
             if sero[i][j] or (j - 1 >= 0 and sero[i][j - 1]) or (j + 1 < N - 1 and sero[i][j + 1]):
                 continue
             sero[i][j] = True
-            sol(i, j, n, chk - 1)
+            sol(i, j + 1, n, chk - 1)
             sero[i][j] = False
 
 
-N, M, H = map(int, input().split())
-number = [_ for _ in range(N)]
-sero = [[False]*(N - 1) for _ in range(H)]
-ans = -1
-for _ in range(M):
-    a, b = map(int, input().split())
-    sero[a - 1][b - 1] = True
 cal(0)
 for modify in range(1, 4):
     if ans != -1:
