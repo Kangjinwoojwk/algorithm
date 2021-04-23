@@ -17,11 +17,18 @@ def move():
                 continue
             nx = (x + (dx[data[y][x][1]] * data[y][x][0])) % (2 * (C - 1))
             ny = (y + (dy[data[y][x][1]] * data[y][x][0])) % (2 * (R - 1))
-            if nx >= C - 1:
+            if nx > C - 1:
                 nx = C - 1 - (nx - (C - 1))
-                if data[y][x]
-            if ny >= R - 1:
+                if data[y][x][1] == 2:
+                    data[y][x][1] = 3
+                else:
+                    data[y][x][1] = 2
+            if ny > R - 1:
                 ny = R - 1 - (ny - (R - 1))
+                if data[y][x][1] == 0:
+                    data[y][x][1] = 1
+                else:
+                    data[y][x][1] = 0
             if temp_data[ny][nx][2] < data[y][x][2]:
                 temp_data[ny][nx] = data[y][x][:]
             else:
@@ -32,7 +39,7 @@ def move():
 for i in range(C):
     for j in range(R):
         if data[j][i][2] != 0:
-            answer += data[i][j][2]
+            answer += data[j][i][2]
             data[j][i] = [0, 0, 0]
             break
     move()
