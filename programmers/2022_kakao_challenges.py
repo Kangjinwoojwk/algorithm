@@ -1,7 +1,7 @@
 import requests #pip install requests
 import json
-x_auth_token = '5aafc2f4cf853ab1ff4a8f29a6f818e6'
-BASE_URL = 'https://huqeyhi95c.execute-api.ap-northeast-2.amazonaws.com/prod'
+x_auth_token = ''
+BASE_URL = ''
 header = {'X-Auth-Token': x_auth_token, 'Content-Type': 'application/json', }
 data = {'problem': 2, }#문제 설정
 
