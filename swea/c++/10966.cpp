@@ -40,11 +40,12 @@ int main(int argc, char** argv)
 				tempy = tempj + dy[i];
 				if (0 <= tempx && tempx < N && 0 <= tempy && tempy < M&&board_cnt[tempx][tempy] == -1) {
 					board_cnt[tempx][tempy] = board_cnt[tempi][tempj] + 1;
-					ans += board_cnt[tempx][tempy];
 					q.push({ tempx, tempy });
 				}
 			}
 		}
+		for (register int i = 0; i < N; ++i)
+			for (register int j = 0; j < M; ++j) ans += board_cnt[i][j];
 		cout << '#' << test_case << ' ' << ans << '\n';
 	}
 	return 0;
